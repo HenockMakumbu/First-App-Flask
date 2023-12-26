@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="text-center">Identity</h2>
+<div>
+    {% if tasks %}
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <th><a href="/update/{{task.id}}/">{{ task.name }}</a></th>
+                <th>{{ task.created_at.date() }}</th>
+                <th>
+                    <a href="/delete/{{task.id}}/" class="btn btn-danger">Delete</a>
+
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% else %}
+    <p> Nothing was added</p>
+    {% endif %}
+
+    {% include "partials/_form.html"%}
+</div>
+
+
+{% endblock content %}
